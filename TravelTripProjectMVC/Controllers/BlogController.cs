@@ -27,5 +27,21 @@ namespace TravelTripProjectMVC.Controllers
             blogYorum.Deger2 = myContext.Yorumlars.Where(x => x.ID == id).ToList();
             return View(blogYorum);
         }
+
+        [HttpGet]
+        public PartialViewResult YorumYap(int id)
+        {
+            ViewBag.deger = id;
+            return PartialView();
+        }
+
+
+        [HttpPost]
+        public PartialViewResult YorumYap(Yorumlar yorumlar)
+        {
+            myContext.Yorumlars.Add(yorumlar);
+            myContext.SaveChanges();
+            return PartialView();   
+        }
     }
 }
